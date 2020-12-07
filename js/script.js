@@ -2,7 +2,7 @@
 function playGame(playerInput){
 
     clearMessages()
-    
+
     //Computer move
 
     let randomNumber = Math.floor(Math.random() * 3 + 1);
@@ -57,3 +57,12 @@ function playGame(playerInput){
     displayResult(randomNumber, playerInput);
 }
 
+document.getElementById('play-rock').addEventListener('click', function(){
+    printMessage('Guzik został kliknięty');
+  });
+document.getElementById('play-paper').addEventListener('click', function(){
+    printMessage('Guzik został kliknięty');
+  });
+document.getElementById('play-scissors').addEventListener('click', function(){
+    printMessage('Guzik został kliknięty');
+  });
