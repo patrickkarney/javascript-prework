@@ -38,7 +38,8 @@ function playGame(playerInput){
     
         console.log('moves:', argComputerMove, argPlayerMove);
 
-        printMessage('Komputer zagrał: '+ computerMove + ', a Ty: ' + playerMove);
+        printMessage('Komputer zagrał: '+ computerMove);
+        printMessage('Ty zagrałeś: ' + playerMove);
 
         if(argComputerMove == argPlayerMove){
             printMessage('Mamy remis! Zagraj jeszcze raz!');
@@ -58,11 +59,11 @@ function playGame(playerInput){
 }
 
 document.getElementById('play-rock').addEventListener('click', function(){
-    printMessage('Guzik został kliknięty');
+    playGame(1);
   });
 document.getElementById('play-paper').addEventListener('click', function(){
-    printMessage('Guzik został kliknięty');
+    playGame(2);
   });
 document.getElementById('play-scissors').addEventListener('click', function(){
-    printMessage('Guzik został kliknięty');
+    playGame(3);
   });
