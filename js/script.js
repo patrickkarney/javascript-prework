@@ -4,15 +4,28 @@ let randomNumber = Math.floor(Math.random() * 3 + 1);
 
 console.log('Wylosowana liczba to: ' + randomNumber);
 
-let computerMove = 'nieznany ruch';
+let computerMove = getMoveName(randomNumber);
 
-if(randomNumber == 1){
+function getMoveName(argMoveId){
+    if(argMoveId == 1){
+      return 'kamień';
+    } else if(argMoveId == 2){
+        return 'papier';
+    } else if(argMoveId == 3){
+        return 'nożyce';
+    } else {
+      printMessage('Nie znam ruchu o id ' + argMoveId + '.');
+      return 'nieznany ruch';
+    }
+  }
+
+/*if(randomNumber == 1){
   computerMove = 'kamień';
 } else if(randomNumber == 2){
     computerMove = 'papier'
 } else{
     computerMove = 'nożyce'
-}
+}*/
 
 printMessage('Mój ruch to: ' + computerMove);
 
@@ -32,6 +45,8 @@ if(playerInput == '1'){
     playerMove = 'nożyce';
 } 
 printMessage('Twój ruch to: ' + playerMove);
+
+//Possible outcomes
 
 if(randomNumber == playerInput){
     printMessage('Mamy remis! Zagraj jeszcze raz!');
