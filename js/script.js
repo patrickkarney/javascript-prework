@@ -27,7 +27,7 @@ function getMoveName(argMoveId){
     computerMove = 'nożyce'
 }*/
 
-printMessage('Mój ruch to: ' + computerMove);
+//printMessage('Mój ruch to: ' + computerMove);
 
 //Player move
 
@@ -44,18 +44,28 @@ let playerMove = getMoveName(playerInput);
 } else if(playerInput == '3'){
     playerMove = 'nożyce';
 } */
-printMessage('Twój ruch to: ' + playerMove);
+//printMessage('Twój ruch to: ' + playerMove);
 
 //Possible outcomes
 
-if(randomNumber == playerInput){
-    printMessage('Mamy remis! Zagraj jeszcze raz!');
-} else if(randomNumber>playerInput && Math.abs(randomNumber-playerInput) == 1){
-    printMessage('Wygrał komputer, zagraj jeszcze raz!');
-} else if(randomNumber<playerInput && Math.abs(randomNumber-playerInput) == 1){
-    printMessage('Wygrałeś, brawo!');
-} else if(randomNumber == '3' && playerInput == '1'){
-    printMessage('Wygrałeś, brawo!');
-} else if(randomNumber == '1' && playerInput == '3'){
-    printMessage('Wygrał komputer, zagraj jeszcze raz!');
+function displayResult(argComputerMove, argPlayerMove){
+    
+    console.log('moves:', argComputerMove, argPlayerMove);
+
+    printMessage('Komputer zagrał: '+ computerMove + ', a Ty: ' + playerMove);
+
+    if(argComputerMove == argPlayerMove){
+        printMessage('Mamy remis! Zagraj jeszcze raz!');
+    } else if(argComputerMove>argPlayerMove && Math.abs(argComputerMove-argPlayerMove) == 1){
+        printMessage('Wygrał komputer, zagraj jeszcze raz!');
+    } else if(argComputerMove<argPlayerMove && Math.abs(argComputerMove-argPlayerMove) == 1){
+        printMessage('Wygrałeś, brawo!');
+    } else if(argComputerMove == '3' && argPlayerMove == '1'){
+        printMessage('Wygrałeś, brawo!');
+    } else if(argComputerMove == '1' && argPlayerMove == '3'){
+        printMessage('Wygrał komputer, zagraj jeszcze raz!');
+    }
+
 }
+
+displayResult(randomNumber, playerInput);
