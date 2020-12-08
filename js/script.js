@@ -1,15 +1,8 @@
 
+let playerScore = 0;
+let computerScore = 0;
+
 function playGame(playerInput){
-
-    clearMessages()
-
-    //Computer move
-
-    let randomNumber = Math.floor(Math.random() * 3 + 1);
-
-    console.log('Wylosowana liczba to: ' + randomNumber);
-
-    let computerMove = getMoveName(randomNumber);
 
     function getMoveName(argMoveId){
         if(argMoveId == 1){
@@ -18,21 +11,10 @@ function playGame(playerInput){
         return 'papier';
         } else if(argMoveId == 3){
             return 'nożyce';
-        } else {
-        printMessage('Nie znam ruchu o id ' + argMoveId + '.');
-        return 'nieznany ruch';
         }
+
+    
     }
-
-    //Player move
-
-    //let playerInput = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
-
-    console.log('Gracz wpisał: ' + playerInput);
-
-    let playerMove = getMoveName(playerInput);
-
-    //Possible outcomes
 
     function displayResult(argComputerMove, argPlayerMove){
     
@@ -41,21 +23,41 @@ function playGame(playerInput){
         printMessage('Komputer zagrał: '+ computerMove);
         printMessage('Ty zagrałeś: ' + playerMove);
 
-        if(argComputerMove == argPlayerMove){
-            printMessage('Mamy remis! Zagraj jeszcze raz!');
-        } else if(argComputerMove>argPlayerMove && Math.abs(argComputerMove-argPlayerMove) == 1){
-            printMessage('Wygrał komputer, zagraj jeszcze raz!');
-        } else if(argComputerMove<argPlayerMove && Math.abs(argComputerMove-argPlayerMove) == 1){
-            printMessage('Wygrałeś, brawo!');
-        } else if(argComputerMove == '3' && argPlayerMove == '1'){
-            printMessage('Wygrałeś, brawo!');
-        } else if(argComputerMove == '1' && argPlayerMove == '3'){
-            printMessage('Wygrał komputer, zagraj jeszcze raz!');
-        }
+        const winCondition = (argPlayerMove === 'kamień' && argComputerMove === 'nożyce') ||
+                             (argPlayerMove === 'nożyce' && argComputerMove === 'papier') ||
+                             (argPlayerMove === 'papier' && argComputerMove === 'kamień')
 
+        if(argComputerMove === argPlayerMove) printMessage('Mamy remis! Zagraj jeszcze raz!');
+        else if(winCondition) {
+            printMessage('Wygrał komputer, zagraj jeszcze raz!')
+            return 1;
+        }
+        else {
+            printMessage('Wygrałeś, brawo!')
+            return 0;
+        }
     }
 
-    displayResult(randomNumber, playerInput);
+    function score(argPoint){
+        if (argPoint === 1) computerScore = (computerScore++);
+        else if(argPoint === 0) playerScore = (playerScore++);
+        console.log(computerScore, playerScore);
+
+    }
+        
+    clearMessages()
+
+    let randomNumber = Math.floor(Math.random() * 3 + 1);
+
+    console.log('Wylosowana liczba to: ' + randomNumber);
+
+    let computerMove = getMoveName(randomNumber);
+
+    console.log('Gracz wpisał: ' + playerInput);
+
+    let playerMove = getMoveName(playerInput);    
+
+    score(displayResult(computerMove, playerMove));
 }
 
 document.getElementById('play-rock').addEventListener('click', function(){
@@ -67,3 +69,5 @@ document.getElementById('play-paper').addEventListener('click', function(){
 document.getElementById('play-scissors').addEventListener('click', function(){
     playGame(3);
   });
+
+  document.getElementById('result').innerHTML = 'Komputer: ' + computerScore + ' Gracz: ' + playerScore;
