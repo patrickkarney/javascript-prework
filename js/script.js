@@ -23,9 +23,9 @@ function playGame(playerInput){
         printMessage('Komputer zagrał: '+ computerMove);
         printMessage('Ty zagrałeś: ' + playerMove);
 
-        const winCondition = (argPlayerMove === 'kamień' && argComputerMove === 'nożyce') ||
-                             (argPlayerMove === 'nożyce' && argComputerMove === 'papier') ||
-                             (argPlayerMove === 'papier' && argComputerMove === 'kamień')
+        const winCondition = (argComputerMove === 'kamień' && argPlayerMove === 'nożyce') ||
+                             (argComputerMove === 'nożyce' && argPlayerMove === 'papier') ||
+                             (argComputerMove === 'papier' && argPlayerMove === 'kamień')
 
         if(argComputerMove === argPlayerMove) printMessage('Mamy remis! Zagraj jeszcze raz!');
         else if(winCondition) {
@@ -39,10 +39,10 @@ function playGame(playerInput){
     }
 
     function score(argPoint){
-        if (argPoint === 1) computerScore = (computerScore++);
-        else if(argPoint === 0) playerScore = (playerScore++);
+        if (argPoint === 1) computerScore = computerScore+1;
+        else if(argPoint === 0) playerScore = playerScore+1;
         console.log(computerScore, playerScore);
-
+        document.getElementById('result').innerHTML = 'Komputer: ' + computerScore + ' Gracz: ' + playerScore;
     }
         
     clearMessages()
@@ -70,4 +70,4 @@ document.getElementById('play-scissors').addEventListener('click', function(){
     playGame(3);
   });
 
-  document.getElementById('result').innerHTML = 'Komputer: ' + computerScore + ' Gracz: ' + playerScore;
+  //document.getElementById('result').innerHTML = 'Komputer: ' + computerScore + ' Gracz: ' + playerScore;
