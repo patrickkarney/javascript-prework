@@ -1,10 +1,11 @@
-
-let playerScore = 0;
-let computerScore = 0;
+let playerScore = 0, 
+    computerScore = 0;
 
 function playGame(playerInput){
 
-    function getMoveName(argMoveId){
+    
+
+    const getMoveName = function(argMoveId){
         if(argMoveId == 1){
         return 'kamień';
         } else if(argMoveId == 2){
@@ -16,7 +17,7 @@ function playGame(playerInput){
     
     }
 
-    function displayResult(argComputerMove, argPlayerMove){
+    const displayResult = function(argComputerMove, argPlayerMove){
     
         console.log('moves:', argComputerMove, argPlayerMove);
 
@@ -38,11 +39,11 @@ function playGame(playerInput){
         }
     }
 
-    function score(argPoint){
+    const score = function(argPoint){
         if (argPoint === 1) computerScore = computerScore+1;
         else if(argPoint === 0) playerScore = playerScore+1;
         console.log(computerScore, playerScore);
-        document.getElementById('result').innerHTML = 'Komputer: ' + computerScore + ' Gracz: ' + playerScore;
+        return computerScore, playerScore;
     }
         
     clearMessages()
@@ -58,6 +59,8 @@ function playGame(playerInput){
     let playerMove = getMoveName(playerInput);    
 
     score(displayResult(computerMove, playerMove));
+
+    document.getElementById('result').innerHTML = 'Komputer: ' + computerScore + ' Gracz: ' + playerScore;
 }
 
 document.getElementById('play-rock').addEventListener('click', function(){
@@ -70,4 +73,4 @@ document.getElementById('play-scissors').addEventListener('click', function(){
     playGame(3);
   });
 
-  //document.getElementById('result').innerHTML = 'Komputer: ' + computerScore + ' Gracz: ' + playerScore;
+  
